@@ -3,6 +3,7 @@ import subprocess
 import argparse
 from pathlib import Path
 import logging
+import os
 from config import CONFIG_MAP
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +50,7 @@ if __name__ == '__main__':
     }
 
     # We can use a with statement to ensure threads are cleaned up promptly
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.max_workers) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=int(args.max_workers)) as executor:
         # Start the load operations and mark each future with its collection
         future_to_collection = {executor.submit(process_collection, CONFIG, mode, actual_process, num_of_processes):
                                     f'{mode}_{actual_process}_{num_of_processes}' for mode in divide_collection

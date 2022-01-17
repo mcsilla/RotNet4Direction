@@ -54,8 +54,8 @@ def crop_center_and_resize(img, size):
     return tf.image.resize(center, [size, size], method='lanczos3')
 
 
-def create_input(image):
-    image = crop_center_and_resize(image)
+def create_input(image, image_size):
+    image = crop_center_and_resize(image, image_size)
     label = tf.random.uniform(shape=(), maxval=4, dtype=tf.int32)
     image = tf.image.rot90(image, k=label)
     image = tf.cast(image, tf.float32) / 127.5 - 1
