@@ -57,7 +57,7 @@ class Trainer:
                 optimizer=tf.keras.optimizers.Adam(
                     learning_rate=decay_schedule
                 ),
-                loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                loss=tf.keras.losses.SparseCategoricalCrossentropy(),
                 metrics=['accuracy']
             )
             latest_ckpt = self.continue_running()
