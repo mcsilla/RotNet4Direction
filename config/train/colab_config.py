@@ -1,20 +1,22 @@
 import tensorflow as tf
 
-tfrec_train_pattern = '/content/train*'
-tfrec_val_pattern = '/content/val'
-model_dir = '/content/model'
-log_dir = '/content/log'
+# a colab tpu csak GCS-ról tudja olvasni a tfrecordokat és oda tudja menteni a checkpointokat
+
+tfrec_train_pattern = 'gs://.../train*'
+tfrec_val_pattern = 'gs://.../val*'
+model_dir = 'gs://.../model'
+log_dir = 'gs://.../log'
 
 CONFIG = {
     'project_name': 'Correct orientation of images',
     'experiment_name': 'Resnet-50-backbone, image_size=256',
     'train_dataset_config': {
         'tf_records': tf.io.gfile.glob(tfrec_train_pattern),
-        'batch_size': 512
+        'batch_size': 32
     },
     'val_dataset_config': {
         'tf_records': tf.io.gfile.glob(tfrec_val_pattern),
-        'batch_size': 512
+        'batch_size': 32
     },
     'image_size': 256,
     'strategy': 'colab_tpu',

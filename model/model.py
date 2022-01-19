@@ -24,7 +24,7 @@ class RotNet4:
         # create the new model
         self.model = Model(inputs=base_model.input, outputs=final_output)
 
-        self.model.summary()
+        # self.model.summary()
 
 
 
