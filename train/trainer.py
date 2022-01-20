@@ -35,7 +35,7 @@ class Trainer:
         latest_checkpoint = tf.train.latest_checkpoint(self.config['checkpoint_dir'])
         print('Latest checkpoint: ', latest_checkpoint)
         if latest_checkpoint is not None:
-            self.initial_epoch = int(latest_checkpoint.split("_")[1])
+            self.initial_epoch = int(latest_checkpoint.split("_")[-1])
         return latest_checkpoint
 
     @property
@@ -91,7 +91,7 @@ class Trainer:
                 monitor='val_loss',
                 # save_best_only=True,
                 # mode='min',
-                # save_weights_only=True,
+                save_weights_only=True,
                 # save_freq=1000,
             ),
 

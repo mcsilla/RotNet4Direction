@@ -5,7 +5,7 @@ import tensorflow as tf
 tfrec_train_pattern = 'gs://.../train*'
 tfrec_val_pattern = 'gs://.../val*'
 model_dir = 'gs://.../model'
-log_dir = 'gs://.../log'
+log_dir = 'gs://.../logs'
 
 CONFIG = {
     'project_name': 'Correct orientation of images',
