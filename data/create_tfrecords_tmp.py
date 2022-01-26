@@ -73,6 +73,15 @@ def make_image_grayscale(image: np.ndarray, mode = 'rgb') -> np.ndarray:
         image_out = np.repeat(np.expand_dims(image_out, axis=-1), repeats=3, axis=-1)
     return image_out
 
+def resize_image_fixed_shorter_side(image, min_side):
+    if image.shape[0] <= image.shape[1]:
+        height = min_side
+        width = int(round(image.shape[1] * (min_side / image.shape[0])))
+    if image.shape[0] > image.shape[1]:
+        width = min_side
+        height = int(round(image.shape[0] * (min_side / image.shape[1])))
+    return cv2.resize(image, (width, height), interpolation=cv2.INTER_LANCZOS4)
+
 def resize_image(image: np.ndarray, size) -> np.ndarray:
     return cv2.resize(image, (size, size), interpolation=cv2.INTER_LANCZOS4)
 
@@ -82,12 +91,10 @@ def create_tf_example(image_path, size):
     if image is None:
         raise ImageIsNone(image_path, 'Image is None')
     with catch_stderr(lambda content: check_stderr(content, image_path)):
-        image_center = crop_image_center(image)
-        image_center = make_image_grayscale(image_center)
+        image_resized = resize_image_fixed_shorter_side(image, min_side=size)
+        image_resized = make_image_grayscale(image_resized)
 
-    image = resize_image(image_center, size=size)
-
-    encoded_image = cv2.imencode('.jpg', image)[1].tobytes()
+    encoded_image = cv2.imencode('.jpg', image_resized)[1].tobytes()
 
     feature_dict = {
         'image/filename':
