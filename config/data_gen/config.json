@@ -4,8 +4,8 @@
         "/mnt/noah/_HungaricanaPic/jpg/gallery/fszekphoto/",
         "/mnt/noah/_HungaricanaPic/jpg/gallery/fortepan/"
     ],
-    "output_root": "/mnt/noah/_OsszesKiadvanyPDF_DB/csilla_tmp/correct_orientation/tfrecords_rotation",
+    "output_root": "/mnt/noah/_OsszesKiadvanyPDF_DB/csilla_tmp/correct_orientation/tfrecords",
     "validation_ratio": 0.1,
     "image_size": 512,
-    "logdir": "/mnt/noah/_OsszesKiadvanyPDF_DB/csilla_tmp/correct_orientation/logs_rotation"
+    "logdir": "/mnt/noah/_OsszesKiadvanyPDF_DB/csilla_tmp/correct_orientation/logs"
 }
