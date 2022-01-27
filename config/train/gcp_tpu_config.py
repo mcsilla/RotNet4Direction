@@ -2,8 +2,8 @@ import tensorflow as tf
 
 # a colab tpu csak GCS-ról tudja olvasni a tfrecordokat és oda tudja menteni a checkpointokat
 
-tfrec_train_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords/train*'
-tfrec_val_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords/val*'
+tfrec_train_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords_new/train*'
+tfrec_val_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords_new/val*'
 model_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/model'
 log_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/logs'
 
@@ -12,11 +12,11 @@ CONFIG = {
     'experiment_name': 'Resnet-50-backbone, image_size=256',
     'train_dataset_config': {
         'tf_records': tf.io.gfile.glob(tfrec_train_pattern),
-        'batch_size': 1024
+        'batch_size': 2048
     },
     'val_dataset_config': {
         'tf_records': tf.io.gfile.glob(tfrec_val_pattern),
-        'batch_size': 1024
+        'batch_size': 2048
     },
     'image_size': 256,
     'strategy': 'tpu',
@@ -26,12 +26,12 @@ CONFIG = {
     'checkpoint_dir': model_dir,
     'checkpoint_file_prefix': "ckpt_",
     'log_dir': log_dir,
-    'epochs': 50,
-    'power': 0.9,
-    'num_of_train_examples': 136937,
-    'num_of_val_examples': 15111
+    'epochs': 80,
+    'power': 0.7,
+    'num_of_train_examples': 136910,
+    'num_of_val_examples': 15101
 }
 
 steps_per_epoch = CONFIG['num_of_train_examples'] // CONFIG['train_dataset_config']['batch_size']
-CONFIG['decay_steps'] = steps_per_epoch * 30
+CONFIG['decay_steps'] = steps_per_epoch * 60
 # validation_steps: 7429 // CONFIG['val_dataset_config']['batch_size']
