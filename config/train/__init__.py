@@ -5,10 +5,8 @@
 entry in the CONFIG_MAP as shown.
 """
 
-from config.train import colab_config
 from config.train import gcp_tpu_config
 
 CONFIG_MAP = {
-    'colab': colab_config.CONFIG,
     'gcp': gcp_tpu_config.CONFIG,
 }
