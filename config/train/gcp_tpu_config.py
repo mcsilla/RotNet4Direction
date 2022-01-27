@@ -4,8 +4,8 @@ import tensorflow as tf
 
 tfrec_train_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords_new/train*'
 tfrec_val_pattern = 'gs://arcanum-ml/cv/correct_orientation/tpu/tfrecords_new/val*'
-model_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/model'
-log_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/logs'
+model_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/train_2048_256_60_80_0-7'
+log_dir = 'gs://arcanum-ml/cv/correct_orientation/tpu/train_2048_256_60_80_0-7'
 
 CONFIG = {
     'project_name': 'Correct orientation of images',
