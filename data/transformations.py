@@ -73,7 +73,7 @@ def create_input_from_square_image(image, image_size):
 
 def create_input(image, image_size):
     # create input from arbitrary image
-    image = crop_random_square_and_resize(image, image_size)
+    # image = crop_random_square_and_resize(image, image_size)
     image = make_random_transformation(image)
     label = tf.random.uniform(shape=(), maxval=4, dtype=tf.int32)
     image = tf.image.rot90(image, k=label)
